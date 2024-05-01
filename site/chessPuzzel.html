@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <!--titel-->
+    <title>Schaken/Puzzel</title>
+
+    <!--stylesheets-->
+    <link rel="stylesheet" href="css/chessPage.css">
+    <link rel="stylesheet" href="css/navbar.css">
+
+    <!--boxicons-->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+
+    <!--grafiek-->
+    <script defer src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script defer src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+    <!--canvas-->
+    <script type="module" src="scripts/View/Show.js"></script>
+
+    <script src="scripts/View/Onload.js"></script>
+    <script src="scripts/View/Sidebar.js"></script>
+
+
+    <!--bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+
+</head>
+<body onload="OnloadMode()">
+
+<div class="column">
+    <div class="sidebar close">
+        <div class="logo-details">
+            <i class='bx bxs-chess'></i>
+            <span class="logo_name">Schaken</span>
+        </div>
+        <ul class="nav-links">
+
+
+            <li>
+                <a href="index.html">
+                    <i class='bx bx-home'></i>
+                    <span class="link_name">Home</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li>
+                        <a class="link_name" href="index.html">Home
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
+            <li id="idSub1">
+                <div class="icon-link">
+                    <a href="#">
+                        <i class='bx bx-joystick'></i>
+                        <span class="link_name">Spelen</span>
+                    </a>
+                    <i class='bx bxs-chevron-down arrow' onclick="SubmenuToggle1()"></i>
+                </div>
+                <ul class="sub-menu">
+                    <li><a class="link_name" href="#">Spelen</a></li>
+                    <li><a href="chess.html" id="speel">Speel</a></li>
+                    <li><a href="chessPuzzel.html">Puzzels</a></li>
+                </ul>
+            </li>
+
+
+            <li id="idSub2">
+                <div class="icon-link">
+                    <a href="#">
+                        <i class='bx bx-info-circle'></i>
+                        <span class="link_name">Info</span>
+                    </a>
+                    <i class='bx bxs-chevron-down arrow' onclick="SubmenuToggle2()"></i>
+                </div>
+                <ul class="sub-menu">
+                    <li><a class="link_name" href="#">Info</a></li>
+                    <li><a href="GeschiedenisSchaak.html">Geschiedenis</a></li>
+                    <li><a href="rules.html">Spelregels</a></li>
+                    <li><a href="AboutUs.html">Ons Team</a></li>
+                </ul>
+            </li>
+
+
+            <li>
+                <a href="Settings.html">
+                    <i class='bx bx-cog'></i>
+                    <span class="link_name">Instellingen</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="Settings.html">Instellingen</a></li>
+                </ul>
+            </li>
+
+
+            <li>
+                <div class="mode">
+                    <a href="#">
+                        <div class="sun-moon">
+                            <i class='bx bx-moon icon moon'></i>
+                            <i class='bx bx-sun icon sun'></i>
+                        </div>
+                        <span class="link_name2">Light</span>
+                        <div class="toggle-switch" onclick="Darkmode()">
+                            <span class="switch"></span>
+                        </div>
+                    </a>
+                </div>
+            </li>
+
+
+            <li>
+                <div class="profile-details">
+                    <div class="profile-content">
+                        <img src="picture/profile.jpg" alt="profileImg">
+                    </div>
+                    <div class="name-job">
+                        <div class="profile_name">Gast045154</div>
+                        <div class="job">Profiel</div>
+                    </div>
+                    <i class='bx bx-log-out'></i>
+                </div>
+            </li>
+
+
+        </ul>
+    </div>
+
+
+    <section class="home-section">
+        <div class="row">
+            <div class="home-content">
+                <i class='bx bx-menu' onclick="SidebarToggle()"></i>
+                <span class="text">Menu</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row title">
+                <h1 class="title-color" id="type_gamestate">Puzzels</h1>
+            </div>
+            <div class="col-8" id="canvas_element">
+                <canvas id="canvas"></canvas>
+            </div>
+            <div class="col-4 col-sm-10" id="card_element">
+                <div class="card" id="moves_cards">
+                    <div class="top_moves">
+                        <i class='bx bx-user player' id="player1"></i>
+                        <div id="pl"><h3>Player1</h3></div>
+                        <div id="spacer"></div>
+                        <div id="pl_bot"><h3>Puzzel</h3></div>
+                        <i class='bx bx-user player' id="player2"></i>
+                    </div>
+                    <div class="rating">
+                        <div class="ratingcomponents" id="puz_rating" >Moeilijkheid puzzel :</div>
+                        <div class="ratingcomponents" id="currentrating">Jouw Score :</div>
+                    </div>
+                    <div id="plot">
+
+                    </div>
+                    <div id="move_title">Schaakzetten</div>
+                    <div id="card_height">
+                        <div class="scroll" id="playedMoves"></div>
+                    </div>
+                    <div id="buttons_movecard">
+                        <button id="restart" class='chessgame_buttons puzzel_chessgame_buttons'>
+                            <i class="button_chessgame_icon bx bx-revision"></i>
+                            <span class="button_chessgame_text">Nieuwe Puzzel</span>
+                        </button>
+                        <button hidden id="resign" class='chessgame_buttons'>
+                            <i class="button_chessgame_icon bx bx-flag"></i>
+                            <span class="button_chessgame_text">Opgeven</span>
+                        </button>
+                        <button hidden id="undo_move" class='chessgame_buttons'>
+                            <i class="button_chessgame_icon bx bx-revision"></i>
+                            <span class="button_chessgame_text">Undo move</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="popup" id="popup">
+            <img src="picture/bot.jpg" alt="bot">
+            <p>Speel puzzels</p>
+
+            <button type="button" id="close_popup">start</button>
+        </div>
+
+        <div class="popup" id="popup_difficulty">
+            <img src="picture/bot.jpg" alt="bot">
+            <p>Speel</p>
+            <i>Kies de moelijkheidsgraad</i>
+            <select class="selectInPopup" id="difficulty">
+                <option class="choicAdversary" value="1">bot level 1</option>
+                <option class="choicAdversary" value="2">bot level 2</option>
+                <option class="choicAdversary" value="3">bot level 3</option>
+                <option class="choicAdversary" value="4">bot level 4</option>
+                <option class="choicAdversary" value="5">bot level 5</option>
+                <option class="choicAdversary" value="6">bot level 6</option>
+            </select>
+            <div></div>
+            <i>Kies welk kleur u wilt spelen</i>
+            <select class="selectInPopup" id="color">
+                <option class="choicAdversary" value="0">Zwart</option>
+                <option class="choicAdversary" value="1" selected>Wit</option>
+            </select>
+
+            <button type="button" id="close_popup_difficulty">Start</button>
+        </div>
+
+        <div class="popup" id="end">
+            <img src="picture/bot.jpg" alt="bot">
+            <p>you lost</p>
+            <div id="elodiv"> Jouw rating:<br>oldrating+newrating</div>
+            <button type="button" id="close_popup_end">Speel Opnieuw</button>
+            <button type="button" id="close_popup_puzzels" onclick = "window.location.href='chess.html';">Ga naar Spelen</button>
+        </div>
+
+    </section>
+</div>
+
+
+</body>
+</html>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+.wallpaper{
+    background-image: url("../picture/homewallpaper.jpg");
+    background-size: cover;
+    transition: all 0.7s ease;
+}
+
+.easter{
+    transform: rotate(360deg);
+}
+
+
+.home{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-90%);
+    left: -2%;
+    text-align: center;
+    color: #ffffff;
+}
+
+.home .home-title{
+    font-size: 50px;
+}
+
+.home .uppercase{
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+

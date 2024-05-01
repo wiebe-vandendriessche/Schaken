@@ -1,0 +1,17 @@
+
+.Geschiedenis-content {
+    color: var(--text-color);
+    padding-left: 50%;
+    padding-top: 50px;
+}
+
+.card {
+    background-color: var(--sidebar-color) !important;
+    color: var(--text-color) !important;
+}
+
+
+.table{
+    color: var(--text-color) !important;
+}
+
